@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40B0B8F2-5D09-4265-8B8B-4C121F10467C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MovieLink.Service</RootNamespace>
+    <AssemblyName>MovieLink.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\Lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data.cs" />
+    <Compile Include="DataInsertMsg.cs" />
+    <Compile Include="DbMsg.cs" />
+    <Compile Include="Impl\DataProcessor\DataProcessor.cs" />
+    <Compile Include="Impl\DataProcessor\MovieInfoDataProcessor.cs" />
+    <Compile Include="Impl\HtmlParser\Dy2018\DetailParser.cs" />
+    <Compile Include="Impl\HtmlParser\Dy2018\MenuLinkParser.cs" />
+    <Compile Include="Impl\HtmlParser\Dy2018\PageLinkParser.cs" />
+    <Compile Include="Impl\HtmlParser\MTime\MovieInfoDetailParser.cs" />
+    <Compile Include="Impl\HtmlParser\MTime\MovieInfoMenuParser.cs" />
+    <Compile Include="Impl\HtmlParser\MTime\MovieInfoPageParser.cs" />
+    <Compile Include="Impl\HtmlParser\MTime\MtimePage.cs" />
+    <Compile Include="Impl\HtmlParser\MTime\Value.cs" />
+    <Compile Include="Impl\HtmlParser\ParserUtil.cs" />
+    <Compile Include="Impl\HtmlParser\Piaohua\DetailParser.cs" />
+    <Compile Include="Impl\HtmlParser\Piaohua\MenuLinkParser.cs" />
+    <Compile Include="Impl\HtmlParser\Piaohua\PageLinkParser.cs" />
+    <Compile Include="Impl\Worker\BaseMovieParseWorker.cs" />
+    <Compile Include="Impl\Worker\BasePageParserWorker.cs" />
+    <Compile Include="Impl\Worker\Dy2018\PageParserWorker.cs" />
+    <Compile Include="Impl\Worker\Dy2018\MovieParseWorker.cs" />
+    <Compile Include="Impl\Worker\Dy2018\Worker.cs" />
+    <Compile Include="Impl\Worker\Mtime\MovieParseWorker.cs" />
+    <Compile Include="Impl\Worker\Mtime\PageParserWorker.cs" />
+    <Compile Include="Impl\Worker\Mtime\Worker.cs" />
+    <Compile Include="Impl\Worker\Piaohua\MovieParseWorker.cs" />
+    <Compile Include="Impl\Worker\Piaohua\PageParserWorker.cs" />
+    <Compile Include="Impl\Worker\Piaohua\Worker.cs" />
+    <Compile Include="Interface\HtmlParser\IDetaiParse.cs" />
+    <Compile Include="Interface\HtmlParser\IMenuLinkParse.cs" />
+    <Compile Include="Interface\HtmlParser\IMovieInfoMenuParse.cs" />
+    <Compile Include="Interface\HtmlParser\IMovieInfoPageParse.cs" />
+    <Compile Include="Interface\HtmlParser\IMovieInfoDetailParse.cs" />
+    <Compile Include="Interface\HtmlParser\IPageLinkParse.cs" />
+    <Compile Include="Interface\DataProcessor\IInsertDataProcess.cs" />
+    <Compile Include="Interface\Worker\IMovieParseWork.cs" />
+    <Compile Include="Interface\Worker\IPageParseWork.cs" />
+    <Compile Include="Interface\Worker\IWork.cs" />
+    <Compile Include="ParserMsg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MovieLink.Data\MovieLink.Data.csproj">
+      <Project>{88f03190-652d-4724-8651-b1db5092bb79}</Project>
+      <Name>MovieLink.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MovieLink.Model\MovieLink.Model.csproj">
+      <Project>{2eeb8dc4-17cf-4b1c-850d-28159c556161}</Project>
+      <Name>MovieLink.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MovieLink.Util\MovieLink.Util.csproj">
+      <Project>{549a5d4a-8e9e-45fe-b791-3476e449baee}</Project>
+      <Name>MovieLink.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
